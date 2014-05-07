@@ -1,0 +1,56 @@
+//
+//  Api.h
+//  Hige
+//
+//  Created by unchi on 2013/12/06.
+//  Copyright (c) 2013年 sugiyama-mitsunari. All rights reserved.
+//
+
+
+@class AFHTTPRequestOperation;
+
+
+@interface UNCApi : NSObject
+
+typedef void (^UNCApiHandler)(id data, AFHTTPRequestOperation* operation, NSError* error);
+
+
+@property NSInteger timeoutInterval;
+
+
+- (void)
+    get: (NSString*)url
+    params: (NSDictionary*)params
+    completionHandler: (UNCApiHandler)func;
+
+- (void)
+    get: (NSString*)url
+    params: (NSDictionary*)params
+    headers: (NSDictionary*)headers
+    completionHandler: (UNCApiHandler)func;
+
+
+- (void)
+    post: (NSString*)url
+    params: (NSDictionary*)params
+    completionHandler: (UNCApiHandler)func;
+
+- (void)
+    post: (NSString*)url
+    params: (NSDictionary*)params
+    headers: (NSDictionary*)headers
+    completionHandler: (UNCApiHandler)func;
+
+
+- (void)
+    put: (NSString*)url
+    params: (NSDictionary*)params
+    completionHandler: (UNCApiHandler)func;
+
+- (void)
+    put: (NSString*)url
+    params: (NSDictionary*)params
+    headers: (NSDictionary*)headers
+    completionHandler: (UNCApiHandler)func;
+
+@end
