@@ -19,8 +19,8 @@
 		BE1492161919EDF900A86A12 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1492151919EDF900A86A12 /* XCTest.framework */; };
 		BE1492171919EDF900A86A12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491F61919EDF900A86A12 /* Foundation.framework */; };
 		BE1492181919EDF900A86A12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491FA1919EDF900A86A12 /* UIKit.framework */; };
-		BE1492201919EDF900A86A12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE14921E1919EDF900A86A12 /* InfoPlist.strings */; };
-		BE1492221919EDF900A86A12 /* UNCApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1492211919EDF900A86A12 /* UNCApiTests.m */; };
+		BE1492421919F89100A86A12 /* UNCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BE14923F1919F89100A86A12 /* UNCApi.m */; };
+		BE1492431919F89100A86A12 /* UNCApiData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1492411919F89100A86A12 /* UNCApiData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +50,10 @@
 		BE14920E1919EDF900A86A12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BE1492141919EDF900A86A12 /* UNCApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UNCApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1492151919EDF900A86A12 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		BE14921D1919EDF900A86A12 /* UNCApiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UNCApiTests-Info.plist"; sourceTree = "<group>"; };
-		BE14921F1919EDF900A86A12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BE1492211919EDF900A86A12 /* UNCApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNCApiTests.m; sourceTree = "<group>"; };
+		BE14923E1919F89100A86A12 /* UNCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNCApi.h; sourceTree = "<group>"; };
+		BE14923F1919F89100A86A12 /* UNCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCApi.m; sourceTree = "<group>"; };
+		BE1492401919F89100A86A12 /* UNCApiData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNCApiData.h; sourceTree = "<group>"; };
+		BE1492411919F89100A86A12 /* UNCApiData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCApiData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				BE1491FC1919EDF900A86A12 /* UNCApi */,
-				BE14921B1919EDF900A86A12 /* UNCApiTests */,
 				BE1491F51919EDF900A86A12 /* Frameworks */,
 				BE1491F41919EDF900A86A12 /* Products */,
 			);
@@ -112,6 +112,7 @@
 		BE1491FC1919EDF900A86A12 /* UNCApi */ = {
 			isa = PBXGroup;
 			children = (
+				BE14923D1919F89100A86A12 /* UNCApi */,
 				BE1492051919EDF900A86A12 /* UNCAppDelegate.h */,
 				BE1492061919EDF900A86A12 /* UNCAppDelegate.m */,
 				BE1492081919EDF900A86A12 /* Main.storyboard */,
@@ -134,22 +135,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BE14921B1919EDF900A86A12 /* UNCApiTests */ = {
+		BE14923D1919F89100A86A12 /* UNCApi */ = {
 			isa = PBXGroup;
 			children = (
-				BE1492211919EDF900A86A12 /* UNCApiTests.m */,
-				BE14921C1919EDF900A86A12 /* Supporting Files */,
+				BE14923E1919F89100A86A12 /* UNCApi.h */,
+				BE14923F1919F89100A86A12 /* UNCApi.m */,
+				BE1492401919F89100A86A12 /* UNCApiData.h */,
+				BE1492411919F89100A86A12 /* UNCApiData.m */,
 			);
-			path = UNCApiTests;
-			sourceTree = "<group>";
-		};
-		BE14921C1919EDF900A86A12 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BE14921D1919EDF900A86A12 /* UNCApiTests-Info.plist */,
-				BE14921E1919EDF900A86A12 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = UNCApi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE1492201919EDF900A86A12 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,8 +244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE14920D1919EDF900A86A12 /* UNCViewController.m in Sources */,
+				BE1492431919F89100A86A12 /* UNCApiData.m in Sources */,
 				BE1492031919EDF900A86A12 /* main.m in Sources */,
 				BE1492071919EDF900A86A12 /* UNCAppDelegate.m in Sources */,
+				BE1492421919F89100A86A12 /* UNCApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE1492221919EDF900A86A12 /* UNCApiTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,14 +283,6 @@
 				BE1492091919EDF900A86A12 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BE14921E1919EDF900A86A12 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE14921F1919EDF900A86A12 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
