@@ -62,12 +62,12 @@
     AFHTTPRequestOperation *operation = [manager
             HTTPRequestOperationWithRequest:request
                                     success:^(AFHTTPRequestOperation* operation, id responseObject) {
-                                        NSLog(@"status code %ld", (long)[operation.response statusCode]);
-                                        NSLog (@"API: %@: %@", url, responseObject);
+                                      //  NSLog(@"status code %ld", (long)[operation.response statusCode]);
+                                      //  NSLog (@"API: %@: %@", url, responseObject);
                                         func(responseObject, operation, nil);
                                     }
                                     failure:^(AFHTTPRequestOperation* operation, NSError* error) {
-                                        NSLog(@"status code %ld", (long)[operation.response statusCode]);
+                                      //  NSLog(@"status code %ld", (long)[operation.response statusCode]);
                                         func(nil, operation, error);
                                     }];
     
@@ -164,12 +164,12 @@
     AFHTTPRequestOperation *operation = [manager
                                          HTTPRequestOperationWithRequest:request
                                          success:^(AFHTTPRequestOperation* operation, id responseObject) {
-                                             NSLog(@"status code %ld", (long)[operation.response statusCode]);
-                                             NSLog (@"API: %@: %@", url, responseObject);
+                                            // NSLog(@"status code %ld", (long)[operation.response statusCode]);
+                                            // NSLog (@"API: %@: %@", url, responseObject);
                                              func(responseObject, operation, nil);
                                          }
                                          failure:^(AFHTTPRequestOperation* operation, NSError* error) {
-                                             NSLog(@"status code %ld", (long)[operation.response statusCode]);
+                                            // NSLog(@"status code %ld", (long)[operation.response statusCode]);
                                              func(nil, operation, error);
                                          }];
     
