@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2078C59AA844B2904195EF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFD2864AC1C4D8EBAB56C13 /* libPods.a */; };
 		BE1491F71919EDF900A86A12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491F61919EDF900A86A12 /* Foundation.framework */; };
 		BE1491F91919EDF900A86A12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491F81919EDF900A86A12 /* CoreGraphics.framework */; };
 		BE1491FB1919EDF900A86A12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491FA1919EDF900A86A12 /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FFD2864AC1C4D8EBAB56C13 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37A0D683AB24C7B90661C35 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BE1491F31919EDF900A86A12 /* UNCApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UNCApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1491F61919EDF900A86A12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE1491F81919EDF900A86A12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,6 +67,7 @@
 				BE1491F91919EDF900A86A12 /* CoreGraphics.framework in Frameworks */,
 				BE1491FB1919EDF900A86A12 /* UIKit.framework in Frameworks */,
 				BE1491F71919EDF900A86A12 /* Foundation.framework in Frameworks */,
+				0B2078C59AA844B2904195EF /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 				BE1491FC1919EDF900A86A12 /* UNCApi */,
 				BE1491F51919EDF900A86A12 /* Frameworks */,
 				BE1491F41919EDF900A86A12 /* Products */,
+				A37A0D683AB24C7B90661C35 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +110,7 @@
 				BE1491F81919EDF900A86A12 /* CoreGraphics.framework */,
 				BE1491FA1919EDF900A86A12 /* UIKit.framework */,
 				BE1492151919EDF900A86A12 /* XCTest.framework */,
+				9FFD2864AC1C4D8EBAB56C13 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE1492251919EDF900A86A12 /* Build configuration list for PBXNativeTarget "UNCApi" */;
 			buildPhases = (
+				5D0E553D45044B4C9BD7EF2C /* Check Pods Manifest.lock */,
 				BE1491EF1919EDF900A86A12 /* Sources */,
 				BE1491F01919EDF900A86A12 /* Frameworks */,
 				BE1491F11919EDF900A86A12 /* Resources */,
+				215BC7A91DBE4D029E5601C3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +245,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		215BC7A91DBE4D029E5601C3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D0E553D45044B4C9BD7EF2C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE1491EF1919EDF900A86A12 /* Sources */ = {
@@ -360,12 +401,14 @@
 		};
 		BE1492261919EDF900A86A12 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37A0D683AB24C7B90661C35 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -373,12 +416,14 @@
 		};
 		BE1492271919EDF900A86A12 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37A0D683AB24C7B90661C35 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -443,6 +488,7 @@
 				BE1492271919EDF900A86A12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE1492281919EDF900A86A12 /* Build configuration list for PBXNativeTarget "UNCApiTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +497,7 @@
 				BE14922A1919EDF900A86A12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

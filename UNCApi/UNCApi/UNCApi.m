@@ -9,8 +9,7 @@
 #import "UNCApi.h"
 #import "UNCApiData.h"
 
-#import "AFHTTPRequestOperationManager.h"
-
+#import <AFNetworking.h>
 
 @implementation UNCApi
 
@@ -40,38 +39,53 @@
     NSLog (@"P:%@", params);
     NSLog (@"H:%@", headers);
     
-    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    NSLog (@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
     
-    NSString* uri = [[NSURL URLWithString:url relativeToURL:manager.baseURL] absoluteString];
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
 
-    NSError* error;
-    NSMutableURLRequest *request = [manager.requestSerializer
-                                        requestWithMethod:@"GET"
-                                                URLString:uri
-                                               parameters:params
-                                                    error:&error];
-
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager new];
+    AFHTTPRequestSerializer* request = [AFHTTPRequestSerializer serializer];
+    
     for (NSString* key in headers) {
         NSString* val = [headers objectForKey: key];
         [request setValue: val forHTTPHeaderField: key];
     }
     
-    [request setTimeoutInterval:_timeoutInterval];
-   // [request setCachePolicy:cachePolicy];
+    request.timeoutInterval = _timeoutInterval;
     
-    AFHTTPRequestOperation *operation = [manager
-            HTTPRequestOperationWithRequest:request
-                                    success:^(AFHTTPRequestOperation* operation, id responseObject) {
-                                      //  NSLog(@"status code %ld", (long)[operation.response statusCode]);
-                                      //  NSLog (@"API: %@: %@", url, responseObject);
-                                        func(responseObject, operation, nil);
-                                    }
-                                    failure:^(AFHTTPRequestOperation* operation, NSError* error) {
-                                      //  NSLog(@"status code %ld", (long)[operation.response statusCode]);
-                                        func(nil, operation, error);
-                                    }];
+    manager.requestSerializer = request;
     
-    [manager.operationQueue addOperation:operation];
+    [manager GET:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        func(responseObject, (NSHTTPURLResponse*)[task response], nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        func(nil, (NSHTTPURLResponse*)[task response], error);
+    }];
+
+    [manager operationQueue];
+
+#else
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    AFHTTPRequestSerializer* request = [AFHTTPRequestSerializer serializer];
+    
+    for (NSString* key in headers) {
+        NSString* val = [headers objectForKey: key];
+        [request setValue: val forHTTPHeaderField: key];
+    }
+
+    request.timeoutInterval = _timeoutInterval;
+
+    manager.requestSerializer = request;
+    
+    [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        func(responseObject, operation.response, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        func(nil, operation.response, error);
+    }];
+
+    [manager operationQueue];
+#endif
 }
 
 - (void)
@@ -115,10 +129,9 @@
     headers: (NSDictionary*)headers
     completionHandler: (UNCApiHandler)func {
     
-    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
-    
-    NSMutableDictionary* strParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* binParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* strParams = [NSMutableDictionary new];
+    NSMutableDictionary* binParams = [NSMutableDictionary new];
     
     for (NSString* key in params) {
         
@@ -129,10 +142,43 @@
         } else {
             [strParams setObject:o forKey: key];
         }
-        
     }
     
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager new];
+    AFHTTPRequestSerializer* request = [AFHTTPRequestSerializer serializer];
     
+    for (NSString* key in headers) {
+        NSString* val = [headers objectForKey: key];
+        [request setValue: val forHTTPHeaderField: key];
+    }
+    request.timeoutInterval = _timeoutInterval;
+
+    manager.requestSerializer = request;
+    
+    [manager            POST:url
+                  parameters:params
+   constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        for (NSString* key in binParams) {
+            UNCApiData* data = [binParams objectForKey: key];
+            [formData appendPartWithFileData:data.bin
+                                        name:key
+                                    fileName:data.fileName
+                                    mimeType:data.mimeType];
+        }
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        func(responseObject, [task response], nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        func(nil, [task response], error);
+    }];
+
+    [manager operationQueue];
+    
+#else
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     
     NSString* uri = [[NSURL URLWithString:url relativeToURL:manager.baseURL] absoluteString];
     
@@ -153,8 +199,7 @@
                                     }
                                     error:&error];
     
-    [request setTimeoutInterval:_timeoutInterval];
-    // [request setCachePolicy:cachePolicy];
+    request.timeoutInterval = _timeoutInterval;
     
     for (NSString* key in headers) {
         NSString* val = [headers objectForKey: key];
@@ -166,14 +211,15 @@
                                          success:^(AFHTTPRequestOperation* operation, id responseObject) {
                                             // NSLog(@"status code %ld", (long)[operation.response statusCode]);
                                             // NSLog (@"API: %@: %@", url, responseObject);
-                                             func(responseObject, operation, nil);
+                                             func(responseObject, operation.response, nil);
                                          }
                                          failure:^(AFHTTPRequestOperation* operation, NSError* error) {
                                             // NSLog(@"status code %ld", (long)[operation.response statusCode]);
-                                             func(nil, operation, error);
+                                             func(nil, operation.response, error);
                                          }];
     
     [manager.operationQueue addOperation:operation];
+#endif
 }
 
 @end

@@ -7,12 +7,12 @@
 //
 
 
-@class AFHTTPRequestOperation;
+@class NSURLResponse;
 
 
 @interface UNCApi : NSObject
 
-typedef void (^UNCApiHandler)(id data, AFHTTPRequestOperation* operation, NSError* error);
+typedef void (^UNCApiHandler)(id data, NSHTTPURLResponse* response, NSError* error);
 
 
 @property NSInteger timeoutInterval;
