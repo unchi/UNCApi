@@ -22,19 +22,17 @@
     return self;
 }
 
-- (void)
-    get: (NSString*)url
-    params: (NSDictionary*)params
-    completionHandler: (UNCApiHandler)func {
+- (void)        get:(NSString*)url
+             params:(NSDictionary*)params
+  completionHandler:(UNCApiHandler)func {
     
     [self get: url params:params headers:@{} completionHandler:func];
 }
 
-- (void)
-    get: (NSString*)url
-    params: (NSDictionary*)params
-    headers: (NSDictionary*)headers
-    completionHandler: (UNCApiHandler)func {
+- (void)        get:(NSString*)url
+             params:(NSDictionary*)params
+            headers:(NSDictionary*)headers
+  completionHandler:(UNCApiHandler)func {
 
     NSLog (@"P:%@", params);
     NSLog (@"H:%@", headers);
@@ -88,46 +86,56 @@
 #endif
 }
 
-- (void)
-    post: (NSString*)url
-    params: (NSDictionary*)params
-    completionHandler: (UNCApiHandler)func {
+- (void)        post:(NSString*)url
+              params:(NSDictionary*)params
+   completionHandler:(UNCApiHandler)func {
     
     [self request:url method:@"POST" params:params headers:@{} completionHandler:func];
 }
 
-- (void)
-    post: (NSString*)url
-    params: (NSDictionary*)params
-    headers: (NSDictionary*)headers
-    completionHandler: (UNCApiHandler)func {
+- (void)        post:(NSString*)url
+              params:(NSDictionary*)params
+             headers:(NSDictionary*)headers
+   completionHandler:(UNCApiHandler)func {
     
     [self request:url method:@"POST" params:params headers:headers completionHandler:func];
 }
 
-- (void)
-    put: (NSString*)url
-    params: (NSDictionary*)params
-    completionHandler: (UNCApiHandler)func {
+- (void)        put:(NSString*)url
+             params:(NSDictionary*)params
+  completionHandler:(UNCApiHandler)func {
     
     [self request:url method:@"PUT" params:params headers:@{} completionHandler:func];
 }
 
-- (void)
-    put: (NSString*)url
-    params: (NSDictionary*)params
-    headers: (NSDictionary*)headers
-    completionHandler: (UNCApiHandler)func {
+- (void)        put:(NSString*)url
+             params:(NSDictionary*)params
+            headers:(NSDictionary*)headers
+  completionHandler:(UNCApiHandler)func {
     
     [self request:url method:@"PUT" params:params headers:headers completionHandler:func];
 }
 
-- (void)
-    request: (NSString*)url
-    method: (NSString*)method
-    params: (NSDictionary*)params
-    headers: (NSDictionary*)headers
-    completionHandler: (UNCApiHandler)func {
+- (void)    delete:(NSString*)url
+            params:(NSDictionary*)params
+ completionHandler:(UNCApiHandler)func {
+    
+    [self request:url method:@"DELETE" params:params headers:@{} completionHandler:func];
+}
+
+- (void)    delete:(NSString*)url
+            params:(NSDictionary*)params
+           headers:(NSDictionary*)headers
+ completionHandler:(UNCApiHandler)func {
+    
+    [self request:url method:@"DELETE" params:params headers:headers completionHandler:func];
+}
+
+- (void)    request:(NSString*)url
+             method:(NSString*)method
+             params:(NSDictionary*)params
+            headers:(NSDictionary*)headers
+  completionHandler:(UNCApiHandler)func {
     
 
     NSMutableDictionary* strParams = [NSMutableDictionary new];
