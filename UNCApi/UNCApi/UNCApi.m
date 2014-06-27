@@ -1,9 +1,8 @@
 //
 //  Api.m
-//  Hige
 //
 //  Created by unchi on 2013/12/06.
-//  Copyright (c) 2013年 sugiyama-mitsunari. All rights reserved.
+//  Copyright (c) 2013年 unchi. All rights reserved.
 //
 
 #import "UNCApi.h"
