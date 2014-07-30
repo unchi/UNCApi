@@ -177,9 +177,9 @@
         }
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-        func(responseObject, [task response], nil);
+        func(responseObject, (NSHTTPURLResponse*)[task response], nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        func(nil, [task response], error);
+        func(nil, (NSHTTPURLResponse*)[task response], error);
     }];
 
     [manager operationQueue];
