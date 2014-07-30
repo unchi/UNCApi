@@ -33,10 +33,10 @@
             headers:(NSDictionary*)headers
   completionHandler:(UNCApiHandler)func {
 
-    NSLog (@"P:%@", params);
-    NSLog (@"H:%@", headers);
-    
-    NSLog (@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
+//    NSLog (@"P:%@", params);
+//    NSLog (@"H:%@", headers);
+//    
+//    NSLog (@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
     
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
