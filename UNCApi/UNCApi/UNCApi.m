@@ -25,7 +25,7 @@
              params:(NSDictionary*)params
   completionHandler:(UNCApiHandler)func {
     
-    [self get: url params:params headers:@{} completionHandler:func];
+    [self requestUrl: url method: @"GET" params:params headers:@{} completionHandler:func];
 }
 
 - (void)        get:(NSString*)url
@@ -33,14 +33,63 @@
             headers:(NSDictionary*)headers
   completionHandler:(UNCApiHandler)func {
 
-//    NSLog (@"P:%@", params);
-//    NSLog (@"H:%@", headers);
-//    
-//    NSLog (@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
+    [self requestUrl: url method: @"GET" params:params headers:headers completionHandler:func];
+}
+
+- (void)        post:(NSString*)url
+              params:(NSDictionary*)params
+   completionHandler:(UNCApiHandler)func {
     
+    [self requestBody:url method:@"POST" params:params headers:@{} completionHandler:func];
+}
+
+- (void)        post:(NSString*)url
+              params:(NSDictionary*)params
+             headers:(NSDictionary*)headers
+   completionHandler:(UNCApiHandler)func {
+    
+    [self requestBody:url method:@"POST" params:params headers:headers completionHandler:func];
+}
+
+- (void)        put:(NSString*)url
+             params:(NSDictionary*)params
+  completionHandler:(UNCApiHandler)func {
+    
+    [self requestBody:url method:@"PUT" params:params headers:@{} completionHandler:func];
+}
+
+- (void)        put:(NSString*)url
+             params:(NSDictionary*)params
+            headers:(NSDictionary*)headers
+  completionHandler:(UNCApiHandler)func {
+    
+    [self requestBody:url method:@"PUT" params:params headers:headers completionHandler:func];
+}
+
+- (void)    delete:(NSString*)url
+            params:(NSDictionary*)params
+ completionHandler:(UNCApiHandler)func {
+    
+    [self requestUrl:url method:@"DELETE" params:params headers:@{} completionHandler:func];
+}
+
+- (void)    delete:(NSString*)url
+            params:(NSDictionary*)params
+           headers:(NSDictionary*)headers
+ completionHandler:(UNCApiHandler)func {
+    
+    [self requestUrl:url method:@"DELETE" params:params headers:headers completionHandler:func];
+}
+
+
+- (void) requestUrl:(NSString*)url
+             method:(NSString*)method
+             params:(NSDictionary*)params
+            headers:(NSDictionary*)headers
+  completionHandler:(UNCApiHandler)func {
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager new];
     AFHTTPRequestSerializer* request = [AFHTTPRequestSerializer serializer];
     
@@ -58,9 +107,9 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         func(nil, (NSHTTPURLResponse*)[task response], error);
     }];
-
+    
     [manager operationQueue];
-
+    
 #else
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -70,9 +119,9 @@
         NSString* val = [headers objectForKey: key];
         [request setValue: val forHTTPHeaderField: key];
     }
-
+    
     request.timeoutInterval = _timeoutInterval;
-
+    
     manager.requestSerializer = request;
     
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -80,57 +129,12 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         func(nil, operation.response, error);
     }];
-
+    
     [manager operationQueue];
-#endif
+#endif    
 }
 
-- (void)        post:(NSString*)url
-              params:(NSDictionary*)params
-   completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"POST" params:params headers:@{} completionHandler:func];
-}
-
-- (void)        post:(NSString*)url
-              params:(NSDictionary*)params
-             headers:(NSDictionary*)headers
-   completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"POST" params:params headers:headers completionHandler:func];
-}
-
-- (void)        put:(NSString*)url
-             params:(NSDictionary*)params
-  completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"PUT" params:params headers:@{} completionHandler:func];
-}
-
-- (void)        put:(NSString*)url
-             params:(NSDictionary*)params
-            headers:(NSDictionary*)headers
-  completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"PUT" params:params headers:headers completionHandler:func];
-}
-
-- (void)    delete:(NSString*)url
-            params:(NSDictionary*)params
- completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"DELETE" params:params headers:@{} completionHandler:func];
-}
-
-- (void)    delete:(NSString*)url
-            params:(NSDictionary*)params
-           headers:(NSDictionary*)headers
- completionHandler:(UNCApiHandler)func {
-    
-    [self request:url method:@"DELETE" params:params headers:headers completionHandler:func];
-}
-
-- (void)    request:(NSString*)url
+- (void)requestBody:(NSString*)url
              method:(NSString*)method
              params:(NSDictionary*)params
             headers:(NSDictionary*)headers
