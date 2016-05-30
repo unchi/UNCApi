@@ -7,6 +7,8 @@
 //
 
 #import "UNCViewController.h"
+#import "UNCApi.h"
+#import "UNCApiData.h"
 
 @interface UNCViewController ()
 
@@ -18,6 +20,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    UIImage* image = [UIImage imageNamed:@"image.png"];
+    NSData* bin = UIImagePNGRepresentation(image);
+    
+    
+    UNCApi* api = [UNCApi new];
+    UNCApiData* data = [UNCApiData new];
+    data.mimeType = @"image/png";
+    data.fileName = @"image.png";
+    data.bin = bin;
+    
+    [api post:@"http://aaaa.json" params:@{ @"data": @[ @{ @"image": bin}] } completionHandler:^(id data, NSHTTPURLResponse *response, NSError *error) {
+        NSLog (@"error: %@", error);
+        NSLog (@"%ld", (long)response.statusCode);
+        NSLog (@"%@", data);
+    }];
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

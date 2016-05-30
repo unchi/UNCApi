@@ -22,6 +22,7 @@
 		BE1492181919EDF900A86A12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1491FA1919EDF900A86A12 /* UIKit.framework */; };
 		BE1492421919F89100A86A12 /* UNCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BE14923F1919F89100A86A12 /* UNCApi.m */; };
 		BE1492431919F89100A86A12 /* UNCApiData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1492411919F89100A86A12 /* UNCApiData.m */; };
+		BE30755B1CFC60EA00811EC3 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = BE30755A1CFC60EA00811EC3 /* image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BE14923F1919F89100A86A12 /* UNCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCApi.m; sourceTree = "<group>"; };
 		BE1492401919F89100A86A12 /* UNCApiData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNCApiData.h; sourceTree = "<group>"; };
 		BE1492411919F89100A86A12 /* UNCApiData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCApiData.m; sourceTree = "<group>"; };
+		BE30755A1CFC60EA00811EC3 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				BE14923D1919F89100A86A12 /* UNCApi */,
 				BE1492051919EDF900A86A12 /* UNCAppDelegate.h */,
 				BE1492061919EDF900A86A12 /* UNCAppDelegate.m */,
+				BE30755A1CFC60EA00811EC3 /* image.png */,
 				BE1492081919EDF900A86A12 /* Main.storyboard */,
 				BE14920B1919EDF900A86A12 /* UNCViewController.h */,
 				BE14920C1919EDF900A86A12 /* UNCViewController.m */,
@@ -234,6 +237,7 @@
 				BE14920F1919EDF900A86A12 /* Images.xcassets in Resources */,
 				BE1492011919EDF900A86A12 /* InfoPlist.strings in Resources */,
 				BE14920A1919EDF900A86A12 /* Main.storyboard in Resources */,
+				BE30755B1CFC60EA00811EC3 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
