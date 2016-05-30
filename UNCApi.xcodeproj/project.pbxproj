@@ -36,8 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4835747B80320C49C288460A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9FFD2864AC1C4D8EBAB56C13 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A37A0D683AB24C7B90661C35 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BE1491F31919EDF900A86A12 /* UNCApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UNCApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1491F61919EDF900A86A12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE1491F81919EDF900A86A12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,6 +59,7 @@
 		BE1492401919F89100A86A12 /* UNCApiData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNCApiData.h; sourceTree = "<group>"; };
 		BE1492411919F89100A86A12 /* UNCApiData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCApiData.m; sourceTree = "<group>"; };
 		BE30755A1CFC60EA00811EC3 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		F121295C947D86CA68EB0819 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC6BA80A23079587A440F7E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4835747B80320C49C288460A /* Pods.debug.xcconfig */,
+				F121295C947D86CA68EB0819 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE1491EA1919EDF900A86A12 = {
 			isa = PBXGroup;
 			children = (
 				BE1491FC1919EDF900A86A12 /* UNCApi */,
 				BE1491F51919EDF900A86A12 /* Frameworks */,
 				BE1491F41919EDF900A86A12 /* Products */,
-				A37A0D683AB24C7B90661C35 /* Pods.xcconfig */,
+				AC6BA80A23079587A440F7E7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,7 +212,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = UNC;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = unchi;
 				TargetAttributes = {
 					BE1492131919EDF900A86A12 = {
@@ -263,7 +273,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5D0E553D45044B4C9BD7EF2C /* Check Pods Manifest.lock */ = {
@@ -351,6 +361,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -405,7 +416,7 @@
 		};
 		BE1492261919EDF900A86A12 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A37A0D683AB24C7B90661C35 /* Pods.xcconfig */;
+			baseConfigurationReference = 4835747B80320C49C288460A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -413,6 +424,7 @@
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -420,7 +432,7 @@
 		};
 		BE1492271919EDF900A86A12 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A37A0D683AB24C7B90661C35 /* Pods.xcconfig */;
+			baseConfigurationReference = F121295C947D86CA68EB0819 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -428,6 +440,7 @@
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
