@@ -8,6 +8,9 @@
 
 #import "UNCAppDelegate.h"
 
+#import "UNCApi.h"
+#import "UNCApiData.h"
+
 
 @implementation UNCAppDelegate
 
@@ -20,6 +23,41 @@
     
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+
+    
+    UIImage* image = [UIImage imageNamed:@"image.png"];
+    NSData* bin = UIImagePNGRepresentation(image);
+    
+    
+    UNCApi* api = [UNCApi new];
+    UNCApiData* data = [UNCApiData new];
+    data.mimeType = @"image/png";
+    data.fileName = @"image.png";
+    data.bin = bin;
+    
+    
+    
+    [api            post:@"http://local-request-test.com/"
+                  params:@{ @"aaa": data, @"hoge": @"test" }
+                 headers:@{}
+       completionHandler:^(id data, NSHTTPURLResponse *response, NSError *error) {
+           
+           NSLog (@"error: %@", error);
+           NSLog (@"%ld", (long)response.statusCode);
+           NSLog (@"%@", data);
+           
+       }];
+    
+    
+    
+    
+    
+    // 成功時には UIBackgroundFetchResultNewData を渡して completionHandler を呼ぶ
+ 
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

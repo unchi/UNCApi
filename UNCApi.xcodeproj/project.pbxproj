@@ -215,6 +215,13 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = unchi;
 				TargetAttributes = {
+					BE1491F21919EDF900A86A12 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					BE1492131919EDF900A86A12 = {
 						TestTargetID = BE1491F21919EDF900A86A12;
 					};
@@ -420,12 +427,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2ae30094-aedc-475a-a1b6-ea359fbe2d7e";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -436,12 +445,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UNCApi/UNCApi-Prefix.pch";
 				INFOPLIST_FILE = "UNCApi/UNCApi-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2ae30094-aedc-475a-a1b6-ea359fbe2d7e";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

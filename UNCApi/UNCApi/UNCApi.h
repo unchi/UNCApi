@@ -36,7 +36,6 @@ typedef void (^UNCApiHandler)(id data, NSHTTPURLResponse* response, NSError* err
              headers:(NSDictionary*)headers
    completionHandler:(UNCApiHandler)func;
 
-
 - (void)        put:(NSString*)url
              params:(NSDictionary*)params
   completionHandler:(UNCApiHandler)func;
