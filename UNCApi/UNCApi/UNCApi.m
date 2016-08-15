@@ -144,14 +144,15 @@ static const NSString* const LINE_END = @"\r\n";
     NSURLSession* const session = [NSURLSession sessionWithConfiguration:config];
 
 
-    __block NSURLSessionDataTask *task =
+    NSURLSessionDataTask *task =
             [session dataTaskWithRequest:request
                        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             func(nil, (NSHTTPURLResponse*)response, error);
         } else {
-            id const json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            func(json, (NSHTTPURLResponse*)response, error);
+            NSError* jsonError;
+            id const json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            func(json, (NSHTTPURLResponse*)response, jsonError);
         }
     }];
 
